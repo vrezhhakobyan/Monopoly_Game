@@ -1,3 +1,5 @@
+package classes;
+
 public class Player {
 	int totalWalk = 0;
 	int position = 0;

@@ -1,3 +1,5 @@
+package classes;
+
 public abstract class Square {
 	String name;
 	public Square(String name) {

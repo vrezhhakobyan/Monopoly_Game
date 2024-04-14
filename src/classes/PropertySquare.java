@@ -1,4 +1,4 @@
-import java.util.Random;
+package classes;
 
 public class PropertySquare extends Square {
 	int price;
@@ -26,7 +26,7 @@ public class PropertySquare extends Square {
 			if(owner != player.getID()){
 				int lost = price * 70 / 100;
 				Info.print(player, player.getName() + " lost " + lost + " money to " + board.getPlayer(owner).getName());
-				player.getMoney().substractMoney(lost);
+				player.getMoney().subtractMoney(lost);
 				board.getPlayer(owner).getMoney().addMoney(lost);
 			}
 		}

@@ -1,3 +1,5 @@
+package classes;
+
 import java.util.Random;
 public class Board {
 	int currentTurn = 0;
@@ -8,7 +10,7 @@ public class Board {
 		players = new Player[totalPlayer];
 		this.totalPlayer = totalPlayer;
 		for(int i = 0;i < players.length;i++){
-			players[i] = new Player(i, "Player " + (i + 1));
+			players[i] = new Player(i, "classes.Player " + (i + 1));
 		}
 		Random rand = new Random();
 		for(int i = 0;i < squares.length;i++){
@@ -21,7 +23,7 @@ public class Board {
 			}else if(i == 29){
 				squares[i] = new GoToJailSquare("Go to Jail");
 			}else if(i == 2 || i == 7 || i == 17 ||i == 22 || i == 33 || i == 36 ){
-				squares[i] = new ChanceSquare("Chance Square");
+				squares[i] = new ChanceSquare("Chance classes.Square");
 			}else{
 				squares[i] = new PropertySquare("House square", 100);//Temporary line(Here I haven't created the child classes yet)
 			}

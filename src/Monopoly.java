@@ -1,3 +1,5 @@
+import classes.*;
+
 import java.util.Scanner;
 
 public class Monopoly {
@@ -5,8 +7,8 @@ public class Monopoly {
 
 
 		// Create two players
-		Player player1 = new Player(1, "Player 1");
-		Player player2 = new Player(2, "Player 2");
+		Player player1 = new Player(1, "classes.Player 1");
+		Player player2 = new Player(2, "classes.Player 2");
 
 		// Create a board with two players
 		Board board = new Board(2);
@@ -18,15 +20,15 @@ public class Monopoly {
 
 		// Start the game loop
 		while (!board.hasWinner()) {
-			// Player 1's turn
+			// classes.Player 1's turn
 			takeTurn(player1, die, board);
 
-			// Check if Player 1 won
+			// Check if classes.Player 1 won
 			if (board.hasWinner()) {
 				break;
 			}
 
-			// Player 2's turn
+			// classes.Player 2's turn
 			takeTurn(player2, die, board);
 		}
 
@@ -58,7 +60,7 @@ public class Monopoly {
 			int price = square.getPrice();
 			if (player.getMoney().getMoney() >= price) {
 				square.setOwner(player.getID());
-				player.getMoney().substractMoney(price);
+				player.getMoney().subtractMoney(price);
 				System.out.println(player.getName() + " bought " + square.getName() + " for $" + price + ".");
 			} else {
 				System.out.println("Insufficient funds. " + player.getName() + " cannot buy " + square.getName() + ".");

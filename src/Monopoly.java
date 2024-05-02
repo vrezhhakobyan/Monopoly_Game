@@ -1,61 +1,71 @@
 import classes.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Monopoly {
 	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
 
+		System.out.println("Welcome to Monopoly!");
+		System.out.println("How many players will play? (2 to 6)");
 
-		// Create two players
-		Player player1 = new Player(1, "classes.Player 1");
-		Player player2 = new Player(2, "classes.Player 2");
+		int numPlayers = scanner.nextInt();
+		while (numPlayers < 2 || numPlayers > 6) {
+			System.out.println("Invalid number of players. Please enter a number between 2 and 6.");
+			numPlayers = scanner.nextInt();
+		}
 
-		// Create a board with two players
-		Board board = new Board(2);
-		board.getPlayers()[0] = player1;
-		board.getPlayers()[1] = player2;
+		// Initialize players
+		List<Player> players = new ArrayList<>();
+		for (int i = 0; i < numPlayers; i++) {
+			System.out.println("Enter name for player " + (i + 1) + ":");
+			String playerName = scanner.next();
+			players.add(new Player(i + 1, playerName));
+		}
+
+		// Initialize the board
+		Board board = new Board(players);
 
 		// Create a die
 		Die die = new Die();
 
 		// Start the game loop
 		while (!board.hasWinner()) {
-			// classes.Player 1's turn
-			takeTurn(player1, die, board);
-
-			// Check if classes.Player 1 won
-			if (board.hasWinner()) {
-				break;
+			for (Player player : players) {
+				takeTurn(player, die, board, scanner);
+				if (board.hasWinner()) {
+					break;
+				}
 			}
-
-			// classes.Player 2's turn
-			takeTurn(player2, die, board);
 		}
 
 		// Print the winner
 		Player winner = board.getWinner();
 		System.out.println("\nGame over!");
 		System.out.println(winner.getName() + " is the winner, having avoided bankruptcy!");
+
+		// Close scanner
+		scanner.close();
 	}
 
-	private static void takeTurn(Player player, Die die, Board board) {
-		Scanner scanner = new Scanner(System.in);
+	private static void takeTurn(Player player, Die die, Board board, Scanner scanner) {
 		System.out.println("\n" + player.getName() + "'s turn:");
 		int face = player.tossDie(die);
 		System.out.println(player.getName() + " rolled a " + face + ".");
 		Square landedSquare = board.movePlayer(player, face);
 		System.out.println(player.getName() + " landed on " + landedSquare.getName() + ".");
-		System.out.println(player.getName() + "has " + player.getMoney());
+		System.out.println(player.getName() + " has $" + player.getMoney().getMoney() + ".");
+
 		if (landedSquare instanceof PropertySquare) {
-
-
 			promptToBuyProperty(player, (PropertySquare) landedSquare, scanner);
 		}
 	}
 
 	private static void promptToBuyProperty(Player player, PropertySquare square, Scanner scanner) {
 		System.out.println("Do you want to buy " + square.getName() + "? (Y/N)");
-		String response = scanner.nextLine().trim().toUpperCase();
+		String response = scanner.next().trim().toUpperCase();
 		if (response.equals("Y")) {
 			int price = square.getPrice();
 			if (player.getMoney().getMoney() >= price) {

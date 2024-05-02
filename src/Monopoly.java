@@ -28,13 +28,14 @@ public class Monopoly {
 		// Initialize the board
 		Board board = new Board(players);
 
-		// Create a die
-		Die die = new Die();
+		// Create two dice
+		Die die1 = new Die();
+		Die die2 = new Die();
 
 		// Start the game loop
 		while (!board.hasWinner()) {
 			for (Player player : players) {
-				takeTurn(player, die, board, scanner);
+				takeTurn(player, die1, die2, board, scanner);
 				if (board.hasWinner()) {
 					break;
 				}
@@ -50,13 +51,16 @@ public class Monopoly {
 		scanner.close();
 	}
 
-	private static void takeTurn(Player player, Die die, Board board, Scanner scanner) {
+	private static void takeTurn(Player player, Die die1, Die die2, Board board, Scanner scanner) {
 		System.out.println("\n" + player.getName() + "'s turn:");
-		int face = player.tossDie(die);
-		System.out.println(player.getName() + " rolled a " + face + ".");
-		Square landedSquare = board.movePlayer(player, face);
+		int face1 = player.tossDie(die1);
+		int face2 = player.tossDie(die2);
+		int totalFace = face1 + face2;
+		System.out.println(player.getName() + " rolled a " + face1 + " and " + face2 + " (total: " + totalFace + ").");
+		Square landedSquare = board.movePlayer(player, totalFace);
 		System.out.println(player.getName() + " landed on " + landedSquare.getName() + ".");
-		System.out.println(player.getName() + " has $" + player.getMoney().getMoney() + ".");
+
+		System.out.println(player.getName() + " has $" + player.getMoney().getMoney());
 
 		if (landedSquare instanceof PropertySquare) {
 			promptToBuyProperty(player, (PropertySquare) landedSquare, scanner);

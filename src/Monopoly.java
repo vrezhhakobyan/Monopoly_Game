@@ -1,11 +1,21 @@
 import classes.*;
+import ui.MonopolyGUI;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Monopoly {
 	public static void main(String[] args) {
+
+
+		SwingUtilities.invokeLater(MonopolyGUI::new);
+
+
+
+
+
 		Scanner scanner = new Scanner(System.in);
 
 		System.out.println("Welcome to Monopoly!");

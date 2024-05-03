@@ -12,53 +12,50 @@ public class Monopoly {
 
 		SwingUtilities.invokeLater(MonopolyGUI::new);
 
-
-
-
-
-		Scanner scanner = new Scanner(System.in);
-
-		System.out.println("Welcome to Monopoly!");
-		System.out.println("How many players will play? (2 to 6)");
-
-		int numPlayers = scanner.nextInt();
-		while (numPlayers < 2 || numPlayers > 6) {
-			System.out.println("Invalid number of players. Please enter a number between 2 and 6.");
-			numPlayers = scanner.nextInt();
-		}
-
-		// Initialize players
-		List<Player> players = new ArrayList<>();
-		for (int i = 0; i < numPlayers; i++) {
-			System.out.println("Enter name for player " + (i + 1) + ":");
-			String playerName = scanner.next();
-			players.add(new Player(i + 1, playerName));
-		}
-
-		// Initialize the board
-		Board board = new Board(players);
-
-		// Create two dice
-		Die die1 = new Die();
-		Die die2 = new Die();
-
-		// Start the game loop
-		while (!board.hasWinner()) {
-			for (Player player : players) {
-				takeTurn(player, die1, die2, board, scanner);
-				if (board.hasWinner()) {
-					break;
-				}
-			}
-		}
-
-		// Print the winner
-		Player winner = board.getWinner();
-		System.out.println("\nGame over!");
-		System.out.println(winner.getName() + " is the winner, having avoided bankruptcy!");
-
-		// Close scanner
-		scanner.close();
+		//
+//		Scanner scanner = new Scanner(System.in);
+//
+//		System.out.println("Welcome to Monopoly!");
+//		System.out.println("How many players will play? (2 to 6)");
+//
+//		int numPlayers = scanner.nextInt();
+//		while (numPlayers < 2 || numPlayers > 6) {
+//			System.out.println("Invalid number of players. Please enter a number between 2 and 6.");
+//			numPlayers = scanner.nextInt();
+//		}
+//
+//		// Initialize players
+//		List<Player> players = new ArrayList<>();
+//		for (int i = 0; i < numPlayers; i++) {
+//			System.out.println("Enter name for player " + (i + 1) + ":");
+//			String playerName = scanner.next();
+//			players.add(new Player(i + 1, playerName));
+//		}
+//
+//		// Initialize the board
+//		Board board = new Board(players);
+//
+//		// Create two dice
+//		Die die1 = new Die();
+//		Die die2 = new Die();
+//
+//		// Start the game loop
+//		while (!board.hasWinner()) {
+//			for (Player player : players) {
+//				takeTurn(player, die1, die2, board, scanner);
+//				if (board.hasWinner()) {
+//					break;
+//				}
+//			}
+//		}
+//
+//		// Print the winner
+//		Player winner = board.getWinner();
+//		System.out.println("\nGame over!");
+//		System.out.println(winner.getName() + " is the winner, having avoided bankruptcy!");
+//
+//		// Close scanner
+//		scanner.close();
 	}
 
 	private static void takeTurn(Player player, Die die1, Die die2, Board board, Scanner scanner) {

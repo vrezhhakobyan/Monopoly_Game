@@ -1,9 +1,12 @@
 package ui;
 
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.OutputStream;
+import java.io.PrintStream;
 
 public class MonopolyGUI extends JFrame {
     private static final int BOARD_SIZE = 800;
@@ -16,6 +19,7 @@ public class MonopolyGUI extends JFrame {
     private int numPlayers;
     private int[] playerPositionsX;
     private int[] playerPositionsY;
+    private JTextArea consoleTextArea;
 
     public MonopolyGUI() {
         setTitle("Monopoly Board");
@@ -26,7 +30,8 @@ public class MonopolyGUI extends JFrame {
 
         controlPanel = new JPanel();
         addControlButtons(controlPanel);
-        add(controlPanel, BorderLayout.EAST);
+        controlPanel.setPreferredSize(new Dimension(200, getHeight())); // Reduce width of control panel
+        add(controlPanel, BorderLayout.WEST); // Move control panel to the left
 
         numPlayers = 0;
         playerPositionsX = new int[6];
@@ -40,13 +45,22 @@ public class MonopolyGUI extends JFrame {
                 drawPlayers(g);
             }
         };
+        boardPanel.setPreferredSize(new Dimension(BOARD_SIZE + 200, BOARD_SIZE)); // Increase width of board panel
         add(boardPanel, BorderLayout.CENTER);
+
+        consoleTextArea = new JTextArea();
+        consoleTextArea.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(consoleTextArea);
+        scrollPane.setPreferredSize(new Dimension(400, 100)); // Adjust console size
+        add(scrollPane, BorderLayout.EAST);
+
+        redirectSystemOutToConsole();
 
         setVisible(true);
     }
 
     private void addControlButtons(JPanel controlPanel) {
-        controlPanel.setLayout(new GridLayout(0, 1));
+        controlPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         String[] playerOptions = {"2 Players", "3 Players", "4 Players", "5 Players", "6 Players"};
 
@@ -60,6 +74,7 @@ public class MonopolyGUI extends JFrame {
                     setupPlayerPositions();
                     controlPanel.setVisible(false);
                     repaint();
+                    displayPlayerInfo();
                 }
             });
             controlPanel.add(button);
@@ -123,5 +138,23 @@ public class MonopolyGUI extends JFrame {
             }
         }
     }
-    
+
+    private void redirectSystemOutToConsole() {
+        PrintStream printStream = new PrintStream(new OutputStream() {
+            @Override
+            public void write(int b) {
+                consoleTextArea.append(String.valueOf((char) b));
+                consoleTextArea.setCaretPosition(consoleTextArea.getDocument().getLength());
+            }
+        });
+
+        System.setOut(printStream);
+    }
+
+    private void displayPlayerInfo() {
+        System.out.println("Player 1 Info:");
+        System.out.println("Name: Player 1");
+        System.out.println("Money: $1500");
+    }
+
 }

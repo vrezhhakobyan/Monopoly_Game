@@ -12,7 +12,7 @@ public class Board {
 
 	public Board(List<Player> players) {
 		this.players = players;
-
+ 
 		for (int i = 0; i < squares.length; i++) {
 			if (i == 0) {
 				squares[i] = new GoSquare("GO");

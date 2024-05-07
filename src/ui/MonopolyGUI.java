@@ -1,4 +1,5 @@
 package ui;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -16,32 +17,24 @@ public class MonopolyGUI extends JFrame {
     private int[] playerPositionsX;
     private int[] playerPositionsY;
     public static JTextArea consoleTextArea;
-    public static boolean choice;
 
     public MonopolyGUI() {
-        //this is main board
+        // This is the main board
         setTitle("Monopoly Board");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         middleImage = Toolkit.getDefaultToolkit().getImage("src/images/monopoly-board.png");
 
-
-
-        //These are interaction buttons
+        // These are interaction buttons
         controlPanel = new JPanel();
         addControlButtons(controlPanel);
         controlPanel.setPreferredSize(new Dimension(100, getHeight()));
         add(controlPanel, BorderLayout.CENTER);
 
-
         playerPositionsX = new int[6];
         playerPositionsY = new int[6];
 
-
-
-
-
-        //THIS DRAWS BOARD
+        // This draws the board
         JPanel boardPanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
@@ -53,9 +46,7 @@ public class MonopolyGUI extends JFrame {
         boardPanel.setPreferredSize(new Dimension(BOARD_SIZE + 200, BOARD_SIZE));
         add(boardPanel, BorderLayout.WEST);
 
-
-
-        //Information display
+        // Information display
         consoleTextArea = new JTextArea();
         consoleTextArea.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(consoleTextArea);
@@ -64,21 +55,9 @@ public class MonopolyGUI extends JFrame {
         setVisible(true);
     }
 
-
-
-
-
-
-
     private void addControlButtons(JPanel controlPanel) {
         controlPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
         String[] playerOptions = {"2 Players", "3 Players", "4 Players", "5 Players", "6 Players"};
-
-
-
-
-
-
 
         for (String option : playerOptions) {
             JButton button = new JButton(option);
@@ -87,7 +66,6 @@ public class MonopolyGUI extends JFrame {
                 public void actionPerformed(ActionEvent e) {
                     String buttonText = button.getText();
                     numPlayers = Integer.parseInt(buttonText.split(" ")[0]);
-
 
                     for (Component comp : controlPanel.getComponents()) {
                         if (comp instanceof JButton btn) {
@@ -100,40 +78,7 @@ public class MonopolyGUI extends JFrame {
             });
             controlPanel.add(button);
         }
-
-
-
-        controlPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
-        // Add Yes button
-        JButton yesButton = new JButton("Yes");
-        yesButton.setVisible(true);
-        yesButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Yes button clicked.");
-                choice = true;
-            }
-        });
-        controlPanel.add(yesButton);
-
-        // Add No button
-        JButton noButton = new JButton("No");
-        noButton.setVisible(true);
-        noButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("No button clicked.");
-                choice = false;
-            }
-        });
-        controlPanel.add(noButton);
-
     }
-
-
-
-
-
 
     private void setupPlayerPositions() {
         int startX = SQUARE_SIZE / 2 - PLAYER_SIZE / 2;
@@ -192,8 +137,8 @@ public class MonopolyGUI extends JFrame {
             }
         }
     }
-    public static int getNumPlayers(){
+
+    public static int getNumPlayers() {
         return numPlayers;
     }
-
 }

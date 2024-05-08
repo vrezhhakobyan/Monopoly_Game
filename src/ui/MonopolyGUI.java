@@ -6,10 +6,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MonopolyGUI extends JFrame {
-    private static final int BOARD_SIZE = 800;
-    private static final int SQUARE_SIZE = 80;
-    private static final int IMAGE_SIZE = 800;
-    private static final int PLAYER_SIZE = 20;
+    private static final int BOARD_SIZE = 660;
+    private static final int SQUARE_SIZE = 60;
+    private static final int IMAGE_SIZE = 660;
+    private static final int PLAYER_SIZE = 10;
 
     private Image middleImage;
     private JPanel controlPanel;
@@ -96,16 +96,17 @@ public class MonopolyGUI extends JFrame {
 
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
+                int x = j * SQUARE_SIZE;
+                int y = i * SQUARE_SIZE;
+
                 if (i == 0 || i == rows - 1 || j == 0 || j == cols - 1) {
-                    int x = j * SQUARE_SIZE;
-                    int y = i * SQUARE_SIZE;
+                    // Draw border squares
                     g.setColor(Color.LIGHT_GRAY);
                     g.fillRect(x, y, SQUARE_SIZE, SQUARE_SIZE);
                     g.setColor(Color.BLACK);
                     g.drawRect(x, y, SQUARE_SIZE, SQUARE_SIZE);
                 } else {
-                    int x = j * SQUARE_SIZE;
-                    int y = i * SQUARE_SIZE;
+                    // Draw inner squares
                     g.setColor(Color.WHITE);
                     g.fillRect(x, y, SQUARE_SIZE, SQUARE_SIZE);
                     g.setColor(Color.BLACK);
@@ -114,12 +115,15 @@ public class MonopolyGUI extends JFrame {
             }
         }
 
+        // Adjust the image size
         if (middleImage != null) {
             int imageX = (BOARD_SIZE - IMAGE_SIZE) / 2;
             int imageY = (BOARD_SIZE - IMAGE_SIZE) / 2;
             g.drawImage(middleImage, imageX, imageY, IMAGE_SIZE, IMAGE_SIZE, this);
         }
     }
+
+
 
     private void drawPlayers(Graphics g) {
         if (numPlayers > 0) {

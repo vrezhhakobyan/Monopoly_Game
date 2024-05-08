@@ -49,7 +49,7 @@ public class MonopolyGUI extends JFrame {
         // Information display
         consoleTextArea = new JTextArea();
         consoleTextArea.setEditable(false);
-        consoleTextArea.setFont(new Font("Arial", Font.ITALIC, 25));
+        consoleTextArea.setFont(new Font("Arial", Font.ITALIC, 20)); // Set font size and style
         JScrollPane scrollPane = new JScrollPane(consoleTextArea);
         scrollPane.setPreferredSize(new Dimension(400, 100));
         add(scrollPane, BorderLayout.EAST);

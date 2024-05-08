@@ -25,4 +25,7 @@ public class StationSquare extends Square {
         }
     }
 
+    public int getPrice() {
+        return price;
+    }
 }

@@ -8,6 +8,6 @@ public class TaxSquare extends Square {
 
     @Override
     public void doAction(Player player, Board board) {
-        // Implement the action for Income Tax Square if needed
+        player.getMoney().subtractMoney(200);
     }
 }

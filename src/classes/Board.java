@@ -1,11 +1,8 @@
 package classes;
 
-import java.util.ArrayList;
 import java.util.List;
-
 public class Board {
-	private int currentTurn = 0;
-	private List<Player> players = new ArrayList<>();
+	private final List<Player> players;
 	int[] propertyPrices = {0, 60, 0, 60, 0, 200, 100, 0, 100, 120, 0, 140, 150, 140, 160, 200,180,0,180,200,0,220,0,220,240,200,260,260,150,280,0,300,300,0,320,200,0,350,0,400};
 
 	private final Square[] squares = new Square[40];
@@ -78,25 +75,24 @@ public class Board {
 				squares[i] = new PropertySquare("Park Lane", propertyPrices[i]);
 			} else if (i == 38) {
 				squares[i] = new TaxSquare("Super Tax");
-			} else if (i == 39) {
-				squares[i] = new PropertySquare("Mayfair", propertyPrices[i]);
 			} else {
-				squares[i] = new PropertySquare("Property " + i, propertyPrices[i]);
+				squares[i] = new PropertySquare("Mayfair", propertyPrices[i]);
 			}
 		}
 	}
 
-	public Square movePlayer(Player player, int face) {
-		return movePlayer(player, face, true);
+
+	public Square[] getSquares() {
+		return squares;
 	}
 
-	public Square movePlayer(Player player, int face, boolean count) {
+	public void movePlayer(Player player, int face, boolean count) {
 		if (player.isBrokeOut()) {
-			return squares[player.getCurrentPosition()];
+			return;
 		}
 		int newPosition = normalizePosition(player.getCurrentPosition() + face);
 		player.setPosition(newPosition);
-		System.out.println(player.getName() + " goes to " + squares[player.getCurrentPosition()].getName());
+		System.out.println(player.getName() + " goes to " + squares[newPosition].getName());
 		squares[newPosition].doAction(player, this);
 		if (player.getMoney().isBrokeOut()) {
 			System.out.println(player.getName() + " has been broke out!");
@@ -106,7 +102,6 @@ public class Board {
 				player.nextTurn();
 			}
 		}
-		return squares[newPosition];
 	}
 
 	public boolean hasWinner() {
@@ -130,33 +125,8 @@ public class Board {
 		}
 		return null;
 	}
-
-	public Player getMaxMoneyPlayer() {
-		Player maxplayer = null;
-		for (Player player : players) {
-			if (maxplayer == null || maxplayer.getMoney().getMoney() < player.getMoney().getMoney()) {
-				maxplayer = player;
-			}
-		}
-		return maxplayer;
-	}
-
 	public int normalizePosition(int position) {
 		return position % squares.length;
-	}
-
-	public Player getCurrentPlayer() {
-		return players.get(currentTurn);
-	}
-
-	public List<Player> getPlayers() {
-		return players;
-	}
-
-	public void nextTurn() {
-		if (++currentTurn >= players.size()) {
-			currentTurn = 0;
-		}
 	}
 
 	public Player getPlayer(int id) {

@@ -24,4 +24,8 @@ public class UtilitySquare extends Square {
             }
         }
     }
+
+    public int getPrice() {
+        return price;
+    }
 }

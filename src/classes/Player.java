@@ -18,8 +18,7 @@ public class Player {
 	}
 	
 	public int tossDie(Die die) {
-		int face = die.getFace();
-		return face;
+		return die.getFace();
 	}
 
 	public int getCurrentPosition() {
@@ -53,4 +52,6 @@ public class Player {
 	public boolean isBrokeOut() {
 		return broke_out;
 	}
+
+
 }

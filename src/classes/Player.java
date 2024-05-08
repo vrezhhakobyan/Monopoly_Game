@@ -6,7 +6,7 @@ public class Player {
 	int id;
 	String name;
 	boolean broke_out = false;
-	Money money = new Money(600000);
+	Money money = new Money(1000);
 	
 	public Player(int id, String name) {
 		this.id = id;

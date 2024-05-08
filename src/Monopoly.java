@@ -28,6 +28,7 @@ public class Monopoly extends MonopolyGUI {
 			players.add(new Player(i + 1, playerName));
 		}
 
+
 		// Initialize the board
 		Board board = new Board(players);
 		Die die1 = new Die();
@@ -49,6 +50,8 @@ public class Monopoly extends MonopolyGUI {
 	}
 
 	private static void takeTurn(Player player, Die die1, Die die2, Board board) {
+		MonopolyGUI.consoleTextArea.setText(""); // Clear the text area
+		MonopolyGUI.consoleTextArea.append(player.getName() + "'s money: $" + player.getMoney().getMoney() + "\n");
 		MonopolyGUI.consoleTextArea.append(player.getName() + "'s turn:\n");
 		int face1 = player.tossDie(die1);
 		int face2 = player.tossDie(die2);
@@ -62,6 +65,9 @@ public class Monopoly extends MonopolyGUI {
 			MonopolyGUI.consoleTextArea.append("Player chose: " + (choice ? "Yes" : "No") + "\n");
 		}
 	}
+
+
+
 
 	private static boolean promptToBuyProperty(Player player, PropertySquare square) {
 		int price = square.getPrice();

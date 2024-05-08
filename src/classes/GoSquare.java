@@ -7,7 +7,7 @@ public class GoSquare extends Square {
 	
 	@Override
 	public void doAction(Player player, Board board) {
-		Info.print(player, player.getName() + " is at Go... Giving 1000 money");
-		player.getMoney().addMoney(1000);
+		Info.print(player, player.getName() + " is at Go... Giving 200 money");
+		player.getMoney().addMoney(200);
 	}
 }

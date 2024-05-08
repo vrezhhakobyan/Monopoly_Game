@@ -6,7 +6,6 @@ public class PropertySquare extends Square {
 
 
 
-
 	public PropertySquare(String name, int price) {
 		super(name);
 		this.price = price;

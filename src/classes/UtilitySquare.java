@@ -3,6 +3,7 @@ package classes;
 
 public class UtilitySquare extends Square {
     private int price;
+    private int owner = -1;
 
     public UtilitySquare(String name, int price) {
         super(name);
@@ -11,6 +12,16 @@ public class UtilitySquare extends Square {
 
     @Override
     public void doAction(Player player, Board board) {
-        // Implement the action for Utility Square if needed
+        if (owner < 0) {
+            System.out.println(player.getName() + ", do you want to buy " + getName() + " for $" + price + "?");
+
+        } else {
+            if (owner != player.getID()) {
+                int lost = price * 70 / 100;
+                Info.print(player, player.getName() + " lost $" + lost + " to " + board.getPlayer(owner).getName());
+                player.getMoney().subtractMoney(lost);
+                board.getPlayer(owner).getMoney().addMoney(lost);
+            }
+        }
     }
 }

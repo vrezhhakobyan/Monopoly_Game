@@ -8,7 +8,7 @@ public class Board {
 	private List<Player> players = new ArrayList<>();
 	int[] propertyPrices = {0, 60, 0, 60, 0, 200, 100, 0, 100, 120, 0, 140, 150, 140, 160, 200,180,0,180,200,0,220,0,220,240,200,260,260,150,280,0,300,300,0,320,200,0,350,0,400};
 
-	private Square[] squares = new Square[40];
+	private final Square[] squares = new Square[40];
 
 	public Board(List<Player> players) {
 		this.players = players;
@@ -27,7 +27,7 @@ public class Board {
 			} else if (i == 5 || i == 15 || i == 25 || i == 35) {
 				squares[i] = new StationSquare("Station Square", 200); // Station Square
 			} else if (i == 6) {
-				squares[i] = new PropertySquare("The Angel Islington", propertyPrices[i]);
+				squares[i] = new PropertySquare("The Angel, Islington", propertyPrices[i]);
 			} else if (i == 7 || i == 22|| i == 36) {
 				squares[i] = new ChanceSquare("Chance Square");
 			} else if (i == 8) {

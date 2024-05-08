@@ -7,7 +7,6 @@ public class JailSquare extends Square {
 	
 	@Override
 	public void doAction(Player player, Board board) {
-		System.out.println(player + " lost 500$" );
-		player.getMoney().subtractMoney(500);
+		System.out.println(player + " riches to free parking" );
 	}
 }

@@ -117,10 +117,10 @@ public class MonopolyGUI extends JFrame {
     private void drawPlayers(Graphics g) {
         if (numPlayers > 0) {
             Color[] playerColors = {Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.ORANGE, Color.MAGENTA};
-            int startX = 10; // Starting X coordinate for players
-            int startY = 10; // Starting Y coordinate for players
-            int playerOffsetX = SQUARE_SIZE / 3; // Offset for X coordinate to separate players
-            int playerOffsetY = SQUARE_SIZE / 3; // Offset for Y coordinate to separate players
+            int startX = 11; // Starting X coordinate for players
+            int startY = 11; // Starting Y coordinate for players
+            int playerOffsetX = 0; // Offset for X coordinate to separate players
+            int playerOffsetY = 0; // Offset for Y coordinate to separate players
 
             for (int i = 0; i < numPlayers; i++) {
                 g.setColor(playerColors[i]);

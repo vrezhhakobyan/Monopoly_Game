@@ -77,7 +77,7 @@ public class Monopoly extends MonopolyGUI {
 
 
 	private static void takeTurn(Player player, Die die1, Die die2, Board board) {
-//		MonopolyGUI.consoleTextArea.setText(""); // Clear the text area
+		MonopolyGUI.consoleTextArea.setText(""); // Clear the text area
 		MonopolyGUI.consoleTextArea.append(player.getName() + "'s money: $" + player.getMoney().getMoney() + "\n");
 		MonopolyGUI.consoleTextArea.append(player.getName() + "'s turn:\n");
 		int face1 = player.tossDie(die1);
@@ -91,18 +91,21 @@ public class Monopoly extends MonopolyGUI {
 		Square landedSquare = board.getSquares()[player.getCurrentPosition()];
 		MonopolyGUI.consoleTextArea.append(player.getName() + " landed on " + landedSquare.getName() + ".\n");
 
+
+
 		if (landedSquare instanceof PropertySquare) {
 			boolean choice = promptToBuyProperty(player, (PropertySquare) landedSquare);
 			MonopolyGUI.consoleTextArea.append("Player chose: " + (choice ? "Yes" : "No") + "\n");
 		} else if (landedSquare instanceof StationSquare) {
 			boolean choice = promptToBuyStation(player, (StationSquare) landedSquare);
 			MonopolyGUI.consoleTextArea.append("Player chose: " + (choice ? "Yes" : "No") + "\n");
-		}else if(landedSquare instanceof UtilitySquare){
+		} else if (landedSquare instanceof UtilitySquare) {
 			boolean choice = promptToBuyUtility(player, (UtilitySquare) landedSquare);
 			MonopolyGUI.consoleTextArea.append("Player chose: " + (choice ? "Yes" : "No") + "\n");
 		}
 
 	}
+
 
 	private static void movePlayer(Player player, int steps, Board board) {
 		int currentPosition = player.getCurrentPosition();

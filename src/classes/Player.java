@@ -54,4 +54,7 @@ public class Player {
 	}
 
 
+	public void setInJail(boolean b) {
+
+	}
 }

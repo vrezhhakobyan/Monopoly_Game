@@ -22,7 +22,7 @@ public class MonopolyGUI extends JFrame {
         setTitle("Monopoly Board");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        middleImage = Toolkit.getDefaultToolkit().getImage("src/images/monopoly-board.pn");
+        middleImage = Toolkit.getDefaultToolkit().getImage("src/images/monopoly-board.png");
 
         // These are interaction buttons
         JPanel controlPanel = new JPanel();

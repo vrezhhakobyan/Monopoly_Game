@@ -94,20 +94,13 @@ public class Monopoly extends MonopolyGUI {
 		if (landedSquare instanceof PropertySquare) {
 			boolean choice = promptToBuyProperty(player, (PropertySquare) landedSquare);
 			MonopolyGUI.consoleTextArea.append("Player chose: " + (choice ? "Yes" : "No") + "\n");
-		} else if (landedSquare instanceof StationSquare) {
-			boolean choice = promptToBuyStation(player, (StationSquare) landedSquare);
-			MonopolyGUI.consoleTextArea.append("Player chose: " + (choice ? "Yes" : "No") + "\n");
-		}else if(landedSquare instanceof UtilitySquare){
-			boolean choice = promptToBuyUtility(player, (UtilitySquare) landedSquare);
-			MonopolyGUI.consoleTextArea.append("Player chose: " + (choice ? "Yes" : "No") + "\n");
 		}
-
 	}
 
 	private static void movePlayer(Player player, int steps, Board board) {
 		int currentPosition = player.getCurrentPosition();
 		int totalSquares = board.getTotalSquare();
-		int perimeterSquares = totalSquares - 20; // Perimeter squares of a 10x10 grid
+		int perimeterSquares = totalSquares;
 		int newPosition = (currentPosition + steps) % perimeterSquares;
 
 		// Ensure newPosition is within the bounds of the board
@@ -132,14 +125,5 @@ public class Monopoly extends MonopolyGUI {
 		int result = JOptionPane.showConfirmDialog(null, player.getName() + " Do you want to buy " + square.getName() + " for $" + price + "?", "Buy Property", JOptionPane.YES_NO_OPTION);
 		return result == JOptionPane.YES_OPTION;
 	}
-	private static boolean promptToBuyStation(Player player, StationSquare square) {
-		int price = square.getPrice();
-		int result = JOptionPane.showConfirmDialog(null, player.getName() + " Do you want to buy " + square.getName() + " for $" + price + "?", "Buy Property", JOptionPane.YES_NO_OPTION);
-		return result == JOptionPane.YES_OPTION;
-	}
-	private static boolean promptToBuyUtility(Player player, UtilitySquare square) {
-		int price = square.getPrice();
-		int result = JOptionPane.showConfirmDialog(null, player.getName() + " Do you want to buy " + square.getName() + " for $" + price + "?", "Buy Property", JOptionPane.YES_NO_OPTION);
-		return result == JOptionPane.YES_OPTION;
-	}
+
 }

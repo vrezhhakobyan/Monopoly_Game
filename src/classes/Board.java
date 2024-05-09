@@ -22,7 +22,7 @@ public class Board {
 			} else if (i == 4) {
 				squares[i] = new TaxSquare("Income Tax");
 			} else if (i == 5 || i == 15 || i == 25 || i == 35) {
-				squares[i] = new StationSquare("Station Square", 200); // Station Square
+				squares[i] = new PropertySquare("Station Square", 200); // Station Square
 			} else if (i == 6) {
 				squares[i] = new PropertySquare("The Angel, Islington", propertyPrices[i]);
 			} else if (i == 7 || i == 22|| i == 36) {
@@ -36,7 +36,7 @@ public class Board {
 			}else if (i == 11) {
 				squares[i] = new PropertySquare("Pall Mall", propertyPrices[i]);
 			} else if (i == 12) {
-				squares[i] = new UtilitySquare("Electric Company", 150); // Electric Company
+				squares[i] = new PropertySquare("Electric Company", 150); // Electric Company
 			} else if (i == 13) {
 				squares[i] = new PropertySquare("Whitehall", propertyPrices[i]);
 			} else if (i == 14) {
@@ -60,7 +60,7 @@ public class Board {
 			} else if (i == 27) {
 				squares[i] = new PropertySquare("Coventry Street", propertyPrices[i]);
 			} else if (i == 28) {
-				squares[i] = new UtilitySquare("Water Works", 150); // Water Works
+				squares[i] = new PropertySquare("Water Works", 150); // Water Works
 			} else if (i == 29) {
 				squares[i] = new PropertySquare("Piccadilly", propertyPrices[i]);
 			} else if (i == 30) {

@@ -1,7 +1,11 @@
 package classes;
 
-
+/**
+ * The ChanceSquare class represents a Chance square in a Monopoly game.
+ * When a player lands on this square, they draw a Chance card, which may result in various actions.
+ */
 public class ChanceSquare extends Square {
+
     private static final String[] CHANCE_CARDS = {
             "Advance to Go. Collect $200.",
             "Go back 3 spaces.",
@@ -10,15 +14,26 @@ public class ChanceSquare extends Square {
             "Bank pays you $20.",
     };
 
+    /**
+     * Constructs a ChanceSquare object with the given name.
+     *
+     * @param name The name of the Chance square
+     */
     public ChanceSquare(String name) {
         super(name);
     }
 
+    /**
+     * Performs the action associated with landing on a Chance square.
+     * Draws a Chance card randomly and executes the corresponding action.
+     *
+     * @param player The player landing on the Chance square
+     * @param board  The game board
+     */
     @Override
     public void doAction(Player player, Board board) {
-        System.out.println(player.getName() + " riches to Chance classes.Square");
-        int chanceNumber = (int) (Math.random() * 3) + 1; // Randomly select a chance
-
+        System.out.println(player.getName() + " reaches to Chance square");
+        int chanceNumber = (int) (Math.random() * CHANCE_CARDS.length); // Randomly select a chance
 
         switch (chanceNumber) {
             case 0: // Move player to Go square
@@ -29,7 +44,7 @@ public class ChanceSquare extends Square {
                 System.out.println("Go back 3 spaces!");
                 board.movePlayer(player, -3, true);
                 break;
-            case 2:
+            case 2: // Go directly to Jail
                 System.out.println("Go directly to Jail!");
                 player.setInJail(true); // Set the player in jail
                 break;
@@ -43,6 +58,5 @@ public class ChanceSquare extends Square {
                 System.out.println("No chance action taken.");
                 break;
         }
-
     }
 }
